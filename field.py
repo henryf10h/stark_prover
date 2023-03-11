@@ -132,7 +132,7 @@ that the element to the n-th power is the unit, but not so for any k<n.
 
         EXAMPLE:
         
-Sure, let's say we have an element g in the field F_(3 * 2^30 + 1) and we want to check if it is of order 1024.
+Let's say we have an element g in the field F_(3 * 2^30 + 1) and we want to check if it is of order 1024.
 
 assert n >= 1: Here we are asserting that the input value n is greater than or equal to 1, so in this case n is 1024 and the assertion passes.
 
@@ -154,7 +154,7 @@ at the first iteration h = 1 * 5 = 5
 at the 2nd iteration h = 5 * 5 = 25
 at the 3rd iteration h = 25 * 5 = 125
 ....
-at the 1023rd iteration h = h * g = h * 5 = h^1023 * g = g^1024
+at the 1023rd iteration h = h^1023 * g = g^1024
 after the loop h * g == FieldElement(1) returns True
 so the function returns True, meaning that g is of order 1024
 Note that the actual calculations depend on the value of g and n you choose, but the process is the same.

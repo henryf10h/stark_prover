@@ -127,8 +127,37 @@ class FieldElement:
 
     def is_order(self, n):
         """
-        Naively checks that the element is of order n by raising it to all powers up to n, checking
-        that the element to the n-th power is the unit, but not so for any k<n.
+Naively checks that the element is of order n by raising it to all powers up to n, checking
+that the element to the n-th power is the unit, but not so for any k<n.
+
+        EXAMPLE:
+        
+Let's say we have an element g in the field F_(3 * 2^30 + 1) and we want to check if it is of order 1024.
+
+assert n >= 1: Here we are asserting that the input value n is greater than or equal to 1, so in this case n is 1024 and the assertion passes.
+
+h = FieldElement(1): Here we initialize a variable h with the value of the unit element of the field, which is 1.
+
+for _ in range(1, n):: This starts a for loop that runs 1024 times, starting from 1 and ending at 1023.
+
+h *= self: In each iteration, we multiply h by self, which is g.
+
+if h == FieldElement(1): return False: After each multiplication, we check if h is equal to the unit element of the field, if it is then we return False, meaning that the element is of order less than 1024.
+
+return h * self == FieldElement(1): After the for loop, we check if h multiplied by self (g) is equal to the unit element of the field. If it is, then the function returns True, meaning that the element is of order 1024.
+
+For example,
+
+g = FieldElement(5)
+n = 1024
+at the first iteration h = 1 * 5 = 5
+at the 2nd iteration h = 5 * 5 = 25
+at the 3rd iteration h = 25 * 5 = 125
+....
+at the 1023rd iteration h = h * g = h * 5 = h^1023 * g = g^1024
+after the loop h * g == FieldElement(1) returns True
+so the function returns True, meaning that g is of order 1024
+Note that the actual calculations depend on the value of g and n you choose, but the process is the same.
         """
         assert n >= 1
         h = FieldElement(1)
